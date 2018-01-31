@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExtendArm extends Command {
+public class RetractArm extends Command {
 
-    public ExtendArm() {
+    public RetractArm() {
         requires(Robot.climber);
     }
 
@@ -19,7 +19,7 @@ public class ExtendArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.moveArm(1);
+    	Robot.climber.moveArm(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
