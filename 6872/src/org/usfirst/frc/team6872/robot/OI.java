@@ -7,9 +7,10 @@
 
 package org.usfirst.frc.team6872.robot;
 
-import org.usfirst.frc.team6872.robot.commands.Autonomous;
+import org.usfirst.frc.team6872.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -22,6 +23,8 @@ public class OI {
 	
 	public OI() {
 		SmartDashboard.putData("Autonomous", new Autonomous());
+		JoystickButton btn1 = new JoystickButton(joystick, 1);
+		btn1.whileHeld(new ExtendArm());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
