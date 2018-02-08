@@ -8,7 +8,7 @@ import org.usfirst.frc.team6872.robot.RobotMap;
 /**
  *
  */
-public class Climber extends Subsystem {
+public class Tower extends Subsystem {
 	
 	private SpeedController arm = RobotMap.telescopicArmMotor;
 	private SpeedController winch = RobotMap.winchMotor;

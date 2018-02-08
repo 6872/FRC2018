@@ -23,7 +23,7 @@ import org.usfirst.frc.team6872.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static Climber climber = new Climber();
+	public static Tower tower = new Tower();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static OI oi;
 
