@@ -25,6 +25,7 @@ import org.usfirst.frc.team6872.robot.subsystems.*;
 public class Robot extends TimedRobot {
 	public static Tower tower = new Tower();
 	public static DriveTrain driveTrain = new DriveTrain();
+	public static Claw claw = new Claw();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -37,7 +38,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto", new DriveWithJoysticks());
+		chooser.addDefault("Default", new DriveWithJoysticks());
 		chooser.addObject("My Auto", new Autonomous());
 		SmartDashboard.putData("Auto mode", chooser);
 	}

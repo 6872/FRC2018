@@ -49,6 +49,6 @@ public class DriveTrain extends Subsystem {
 	 *            Scale applied to joystick position
 	 */
 	public void drive(Joystick joy, double scale) {
-		drive.arcadeDrive(-joy.getY() * scale, -joy.getX() * scale, true);
+		drive.arcadeDrive(-joy.getY() * scale, joy.getX() * scale, true);
 	}
 }

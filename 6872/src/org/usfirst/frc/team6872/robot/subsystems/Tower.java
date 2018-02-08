@@ -10,17 +10,17 @@ import org.usfirst.frc.team6872.robot.RobotMap;
  */
 public class Tower extends Subsystem {
 	
-	private SpeedController arm = RobotMap.telescopicArmMotor;
+	private SpeedController tower = RobotMap.telescopicTowerMotor;
 	private SpeedController winch = RobotMap.winchMotor;
 
 	/**
-	 * Extend / retract the telescopic arm
+	 * Extend / retract the telescopic tower
 	 * 
 	 * @param speed
 	 *            Speed in range [-1,1]
 	 */
-    public void moveArm(double speed) {
-        arm.set(speed);
+    public void moveTower(double speed) {
+        tower.set(speed);
     }
     
     /**
@@ -33,8 +33,8 @@ public class Tower extends Subsystem {
         winch.set(speed);
     }
     
-    public void stopArm() {
-    	arm.stopMotor();
+    public void stopTower() {
+    	tower.stopMotor();
     }
     
     public void stopWinch() {
@@ -42,6 +42,6 @@ public class Tower extends Subsystem {
     }
 
 	@Override
-	protected void initDefaultCommand() {}
+	public void initDefaultCommand() {}
 }
 

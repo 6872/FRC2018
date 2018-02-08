@@ -24,7 +24,13 @@ public class OI {
 	
 	public OI() {
 		SmartDashboard.putData("Autonomous", new Autonomous());
-		bindButton(1, new ExtendArm());
+		
+		bindButton(8, new ExtendArm());
+		bindButton(10, new RetractArm());
+		bindButton(7, new ContractWinch());
+		
+		bindButton(5, new OpenClaw());
+		bindButton(3, new CloseClaw());
 	}
 	
 	private JoystickButton bindButton(int buttonNumber, Command command) {

@@ -1,16 +1,14 @@
 package org.usfirst.frc.team6872.robot.commands;
 
-import org.usfirst.frc.team6872.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team6872.robot.Robot;
 
 /**
  *
  */
-public class Autonomous extends Command {
+public class ContractWinch extends Command {
 
-    public Autonomous() {
-        requires(Robot.driveTrain);
+    public ContractWinch() {
     }
 
     // Called just before this Command runs the first time
@@ -19,22 +17,22 @@ public class Autonomous extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive(0.7, 0);
+    	Robot.tower.contract(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timeSinceInitialized() >= 5;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.drive(0, 0);
+    	Robot.tower.stopWinch();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.drive(0, 0);
+    	Robot.tower.stopWinch();
     }
 }
