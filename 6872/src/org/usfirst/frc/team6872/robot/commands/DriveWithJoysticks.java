@@ -1,6 +1,8 @@
 package org.usfirst.frc.team6872.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team6872.robot.Robot;
 
 /**
@@ -18,7 +20,9 @@ public class DriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive(Robot.oi.joystick, 1);
+    	Robot.driveTrain.drive(Robot.oi.joystick,
+    			SmartDashboard.getNumber("Joystick Sensibility", 0.6),
+    			SmartDashboard.getBoolean("Tank Drive", false));
     }
 
     // Make this return true when this Command no longer needs to run execute()

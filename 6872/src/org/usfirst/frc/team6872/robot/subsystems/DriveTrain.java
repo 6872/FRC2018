@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6872.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -31,15 +32,15 @@ public class DriveTrain extends Subsystem {
 	}
 
 	/**
-	 * Arcade style driving for the DriveTrain.
+	 * Tank style driving for the DriveTrain.
 	 *
 	 * @param left
 	 *            Speed in range [-1,1]
 	 * @param right
 	 *            Speed in range [-1,1]
 	 */
-	public void drive(double speed, double rotation) {
-		drive.arcadeDrive(speed, rotation);
+	public void drive(double left, double right) {
+		drive.tankDrive(left, right);
 	}
 
 	/**
@@ -48,7 +49,24 @@ public class DriveTrain extends Subsystem {
 	 * @param scale
 	 *            Scale applied to joystick position
 	 */
-	public void drive(Joystick joy, double scale) {
-		drive.arcadeDrive(-joy.getY() * scale, joy.getX() * scale, true);
+	public void drive(Joystick joy, double scale, Boolean tankDrive) {
+		if (tankDrive) {
+			drive.tankDrive(-joy.getRawAxis(1) * scale, -joy.getRawAxis(3) * scale);
+		}
+		else {
+			double power = 0;
+			if (joy.getRawButton(8)) {
+				power = 0.8;
+			}
+			else {
+				power = f(-joy.getRawAxis(1)) * scale;
+			}
+			drive.arcadeDrive(power, f(joy.getRawAxis(2)) * scale);
+		}
+	}
+	
+	private double f(double x) {
+		return x;
+		//return (x + Math.signum(x) * 0.4) / 1.4;
 	}
 }

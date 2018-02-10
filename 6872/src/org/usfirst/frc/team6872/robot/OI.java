@@ -23,7 +23,8 @@ public class OI {
 	public Joystick joystick = new Joystick(0);
 	
 	public OI() {
-		SmartDashboard.putData("Autonomous", new Autonomous());
+		SmartDashboard.putBoolean("Tank Drive", false);
+		SmartDashboard.putNumber("Joystick Sensibility", 0.6);
 		
 		bindButton(8, new ExtendArm());
 		bindButton(10, new RetractArm());
