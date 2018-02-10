@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6872.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Claw claw = new Claw();
 	public static OI oi;
+	public static String gameData;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,9 +42,16 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
-		chooser.addDefault("Default", new DriveWithJoysticks());
-		chooser.addObject("My Auto", new Autonomous());
-		SmartDashboard.putData("Auto mode", chooser);
+		chooser.addObject("Auto Left", new Autonomous(0, -1));
+		chooser.addObject("Auto Centre", new Autonomous(1, -1));
+		chooser.addObject("Auto Right", new Autonomous(2, -1));
+		chooser.addObject("Auto Left to Left", new Autonomous(0, 0));
+		chooser.addObject("Auto Centre to Left", new Autonomous(1, 0));
+		chooser.addObject("Auto Right to Left", new Autonomous(2, 0));
+		chooser.addObject("Auto Left to Right", new Autonomous(0, 1));
+		chooser.addObject("Auto Centre to Right", new Autonomous(1, 1));
+		chooser.addObject("Auto Right to Right", new Autonomous(2, 1));
+		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
 	/**
@@ -74,6 +83,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
