@@ -32,7 +32,6 @@ public class Robot extends TimedRobot {
 	public static String gameData;
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -42,16 +41,6 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
-		chooser.addObject("Auto Left", new Autonomous(0, -1));
-		chooser.addObject("Auto Centre", new Autonomous(1, -1));
-		chooser.addObject("Auto Right", new Autonomous(2, -1));
-		chooser.addObject("Auto Left to Left", new Autonomous(0, 0));
-		chooser.addObject("Auto Centre to Left", new Autonomous(1, 0));
-		chooser.addObject("Auto Right to Left", new Autonomous(2, 0));
-		chooser.addObject("Auto Left to Right", new Autonomous(0, 1));
-		chooser.addObject("Auto Centre to Right", new Autonomous(1, 1));
-		chooser.addObject("Auto Right to Right", new Autonomous(2, 1));
-		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
 	/**
@@ -82,7 +71,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = oi.chooser.getSelected();
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 

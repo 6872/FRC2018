@@ -8,7 +8,6 @@
 package org.usfirst.frc.team6872.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -51,17 +50,31 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void drive(Joystick joy, double scale, Boolean tankDrive) {
 		if (tankDrive) {
-			drive.tankDrive(-joy.getRawAxis(1) * scale, -joy.getRawAxis(3) * scale);
+			double left = 0;
+			double right = 0;
+			if (joy.getRawAxis(2) > 0.1) {
+				left = joy.getRawAxis(2);
+			}
+			else {
+				left = -joy.getRawAxis(1);
+			}
+			if (joy.getRawAxis(3) > 0.1) {
+				right = joy.getRawAxis(3);
+			}
+			else {
+				right = joy.getRawAxis(5);
+			}
+			drive.tankDrive(left * scale, right * scale);
 		}
 		else {
 			double power = 0;
-			if (joy.getRawButton(8)) {
-				power = 0.8;
+			if (joy.getRawAxis(3) > 0.1) {
+				power = joy.getRawAxis(3);
 			}
 			else {
 				power = f(-joy.getRawAxis(1)) * scale;
 			}
-			drive.arcadeDrive(power, f(joy.getRawAxis(2)) * scale);
+			drive.arcadeDrive(power, f(joy.getRawAxis(4)) * scale);
 		}
 	}
 	

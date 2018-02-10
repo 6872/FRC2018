@@ -28,10 +28,10 @@ public class Autonomous extends Command {
     		}
     		switch (Robot.gameData.charAt(0)) {
 				case 'L':
-					target = 0;
+					target = 1;
 					break;
 				case 'R':
-					target = 1;
+					target = 0;
 					break;
     		}
     	}
