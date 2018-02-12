@@ -53,7 +53,7 @@ public class Autonomous extends Command {
     	}
     	if (target == 1 && pos != 2) {
     		steps.add(new Step(r, -r, rd));
-    		steps.add(new Step(s, pos * 2));
+    		steps.add(new Step(s, (2 - pos) * 2));
     		steps.add(new Step(-r, r, rd));
     	}
     	steps.add(new Step(s, 3));
