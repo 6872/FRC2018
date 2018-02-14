@@ -20,8 +20,8 @@ public class DriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive(Robot.oi.joystick,
-    			SmartDashboard.getNumber("Joystick Sensibility", 0.6),
+    	Robot.driveTrain.drive(Robot.oi.joystick0, Robot.oi.joystick1,
+    			-Robot.oi.joystick1.getRawAxis(3) / 2 + 0.5,
     			SmartDashboard.getBoolean("Tank Drive", false));
     }
 

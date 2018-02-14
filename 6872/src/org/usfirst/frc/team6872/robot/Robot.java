@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Claw claw = new Claw();
 	public static OI oi;
-	public static String gameData;
+	public static String gameData = "";
 
 	Command autonomousCommand;
 
@@ -38,6 +38,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
+		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		autonomousCommand = oi.chooser.getSelected();
 		
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		//gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

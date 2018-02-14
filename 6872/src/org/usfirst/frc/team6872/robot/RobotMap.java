@@ -22,7 +22,7 @@ public class RobotMap {
 	public static SpeedController rightMotor = new SpeedControllerGroup(new Spark(0), new Spark(2));
 	public static SpeedController leftMotor = new SpeedControllerGroup(new Spark(1), new Spark(3));
 	
-	public static SpeedController clawMotor = new Talon(9);
+	public static SpeedController clawMotor = new Talon(4);
 	
 	public static SpeedController telescopicTowerMotor = new Talon(5);
 	public static SpeedController winchMotor = new Talon(6);

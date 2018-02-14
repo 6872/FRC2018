@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem {
 
 	/**
 	 * When no other command is running let the operator drive around using the
-	 * PS3 joystick.
+	 * PS3 joystick0.
 	 */
 	@Override
 	public void initDefaultCommand() {
@@ -46,35 +46,38 @@ public class DriveTrain extends Subsystem {
 	 * Arcade style driving for the DriveTrain.
 	 * 
 	 * @param scale
-	 *            Scale applied to joystick position
+	 *            Scale applied to joystick0 position
 	 */
-	public void drive(Joystick joy, double scale, Boolean tankDrive) {
+	public void drive(Joystick joy0, Joystick joy1, double scale, Boolean tankDrive) {
 		if (tankDrive) {
 			double left = 0;
 			double right = 0;
-			if (joy.getRawAxis(2) > 0.1) {
-				left = joy.getRawAxis(2);
+			if (joy0.getRawAxis(2) > 0.1) {
+				left = joy0.getRawAxis(2);
 			}
 			else {
-				left = -joy.getRawAxis(1);
+				left = -joy0.getRawAxis(1);
 			}
-			if (joy.getRawAxis(3) > 0.1) {
-				right = joy.getRawAxis(3);
+			if (joy0.getRawAxis(3) > 0.1) {
+				right = joy0.getRawAxis(3);
 			}
 			else {
-				right = joy.getRawAxis(5);
+				right = joy0.getRawAxis(5);
 			}
 			drive.tankDrive(left * scale, right * scale);
 		}
 		else {
-			double power = 0;
-			if (joy.getRawAxis(3) > 0.1) {
-				power = joy.getRawAxis(3);
+			double turn = 0;
+			if (joy1.getRawButton(2)) {
+				turn = -1;
+			}
+			else if (joy1.getRawButton(1)) {
+				turn = 1;
 			}
 			else {
-				power = f(-joy.getRawAxis(1)) * scale;
+				turn = f(joy1.getX());
 			}
-			drive.arcadeDrive(power, f(joy.getRawAxis(4)) * scale);
+			drive.arcadeDrive(f(-joy1.getY()) * scale, turn * scale);
 		}
 	}
 	

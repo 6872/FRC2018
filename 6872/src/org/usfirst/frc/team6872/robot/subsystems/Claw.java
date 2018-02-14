@@ -13,7 +13,7 @@ public class Claw extends Subsystem {
     private SpeedController claw = RobotMap.clawMotor;
     
     public void move(double speed) {
-    	claw.set(speed);
+    	claw.set(-speed);
     }
     
     public void stop() {

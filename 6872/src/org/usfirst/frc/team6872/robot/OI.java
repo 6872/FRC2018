@@ -21,41 +21,42 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI {
 	
-	public Joystick joystick = new Joystick(0);
+	public Joystick joystick0 = new Joystick(0);
+	public Joystick joystick1 = new Joystick(1);
 	public SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	public OI() {
-		chooser.addObject("Auto Left", new Autonomous(0, -1));
-		chooser.addObject("Auto Centre", new Autonomous(1, -1));
+		chooser.addDefault("Auto Left", new Autonomous(0, -1));
+		chooser.addObject("Auto Middle", new Autonomous(1, -1));
 		chooser.addObject("Auto Right", new Autonomous(2, -1));
 		chooser.addObject("Auto Left to Left", new Autonomous(0, 0));
-		chooser.addObject("Auto Centre to Left", new Autonomous(1, 0));
+		chooser.addObject("Auto Middle to Left", new Autonomous(1, 0));
 		chooser.addObject("Auto Right to Left", new Autonomous(2, 0));
 		chooser.addObject("Auto Left to Right", new Autonomous(0, 1));
-		chooser.addObject("Auto Centre to Right", new Autonomous(1, 1));
+		chooser.addObject("Auto Middle to Right", new Autonomous(1, 1));
 		chooser.addObject("Auto Right to Right", new Autonomous(2, 1));
-		SmartDashboard.putData("Auto Mode", chooser);
 		
+		SmartDashboard.putData("Auto Mode", chooser);
 		SmartDashboard.putBoolean("Tank Drive", false);
 		SmartDashboard.putNumber("Joystick Sensibility", 0.6);
 		
 		// Logitech Gamepad F310 XInput
-		bindButton(12, new ExtendArm()); // Arrow Up
-		bindButton(13, new RetractArm()); // Arrow Down
-		bindButton(9, new ContractWinch()); // Start
-		bindButton(3, new OpenClaw()); // Y
-		bindButton(0, new CloseClaw()); // A
+		//bindButton(12, new ExtendArm()); // Arrow Up
+		//bindButton(13, new RetractArm()); // Arrow Down
+		//bindButton(9, new ContractWinch()); // Start
+		bindButton(4, new OpenClaw()); // Y
+		bindButton(1, new CloseClaw()); // A
 	}
 	
 	private JoystickButton bindButton(int buttonNumber, Command command) {
-		JoystickButton button = new JoystickButton(joystick, buttonNumber);
+		JoystickButton button = new JoystickButton(joystick0, buttonNumber);
 		button.whileHeld(command);
 		return button;
 	}
 	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
+	// One type of button is a joystick0 button which is any button on a
+	//// joystick0.
+	// You create one by telling it which joystick0 it's on and which button
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	// Button button = new JoystickButton(stick, buttonNumber);
