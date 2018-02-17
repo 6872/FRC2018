@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import org.usfirst.frc.team6872.robot.RobotMap;
+import org.usfirst.frc.team6872.robot.commands.ClawJoystick;
 
 /**
  *
@@ -21,6 +22,8 @@ public class Claw extends Subsystem {
     }
 
 	@Override
-	public void initDefaultCommand() {}
+	public void initDefaultCommand() {
+		setDefaultCommand(new ClawJoystick());
+	}
 }
 

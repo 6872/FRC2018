@@ -21,12 +21,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI {
 	
-	public Joystick joystick0 = new Joystick(0);
-	public Joystick joystick1 = new Joystick(1);
+	public Joystick joy0 = new Joystick(0); // Gamepad F310
+	public Joystick joy1 = new Joystick(1); // Extreme 3D Pro
 	public SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	public OI() {
-		chooser.addDefault("Auto Left", new Autonomous(0, -1));
+		chooser.addDefault("Recorded Auto", new Autonomous(0, -2));
+		chooser.addObject("Auto Left", new Autonomous(0, -1));
 		chooser.addObject("Auto Middle", new Autonomous(1, -1));
 		chooser.addObject("Auto Right", new Autonomous(2, -1));
 		chooser.addObject("Auto Left to Left", new Autonomous(0, 0));
@@ -40,44 +41,19 @@ public class OI {
 		SmartDashboard.putBoolean("Tank Drive", false);
 		SmartDashboard.putNumber("Joystick Sensibility", 0.6);
 		
+		bindButton(5, new RecordAuto());
 		// Logitech Gamepad F310 XInput
 		//bindButton(12, new ExtendArm()); // Arrow Up
 		//bindButton(13, new RetractArm()); // Arrow Down
 		//bindButton(9, new ContractWinch()); // Start
-		bindButton(4, new OpenClaw()); // Y
-		bindButton(1, new CloseClaw()); // A
+		//bindButton(4, new OpenClaw()); // Y
+		//bindButton(1, new CloseClaw()); // A
 	}
 	
+	@SuppressWarnings("unused")
 	private JoystickButton bindButton(int buttonNumber, Command command) {
-		JoystickButton button = new JoystickButton(joystick0, buttonNumber);
+		JoystickButton button = new JoystickButton(joy0, buttonNumber);
 		button.whileHeld(command);
 		return button;
 	}
-	//// CREATING BUTTONS
-	// One type of button is a joystick0 button which is any button on a
-	//// joystick0.
-	// You create one by telling it which joystick0 it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 }

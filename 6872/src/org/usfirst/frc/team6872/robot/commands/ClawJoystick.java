@@ -1,17 +1,16 @@
 package org.usfirst.frc.team6872.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team6872.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveWithJoysticks extends Command {
+public class ClawJoystick extends Command {
 
-    public DriveWithJoysticks() {
-        requires(Robot.driveTrain);
+    public ClawJoystick() {
+        requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
@@ -20,9 +19,12 @@ public class DriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive(Robot.oi.joy0, Robot.oi.joy1,
-    			-Robot.oi.joy1.getRawAxis(3) / 2 + 0.5,
-    			SmartDashboard.getBoolean("Tank Drive", false));
+    	if (Robot.oi.joy0.getRawButton(6)) {
+        	Robot.claw.move(0.2);
+    	}
+    	else {
+        	Robot.claw.move(-Robot.oi.joy0.getRawAxis(3) * 0.3);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,12 +34,12 @@ public class DriveWithJoysticks extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.drive(0, 0);
+    	Robot.claw.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.drive(0, 0);
+    	Robot.claw.stop();
     }
 }
