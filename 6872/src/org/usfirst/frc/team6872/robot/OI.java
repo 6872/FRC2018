@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI {
 	
-	public Joystick joy0 = new Joystick(0); // Gamepad F310
-	public Joystick joy1 = new Joystick(1); // Extreme 3D Pro
+	public Joystick gamepad = new Joystick(1); // Gamepad F310
+	public Joystick joystick = new Joystick(0); // Extreme 3D Pro
 	public SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	public OI() {
@@ -39,20 +39,18 @@ public class OI {
 		
 		SmartDashboard.putData("Auto Mode", chooser);
 		SmartDashboard.putBoolean("Tank Drive", false);
-		SmartDashboard.putNumber("Joystick Sensibility", 0.6);
+		SmartDashboard.putNumber("Winch Motor", 1);
+		SmartDashboard.putNumber("Tower Motor", 0.5);
 		
 		bindButton(5, new RecordAuto());
-		// Logitech Gamepad F310 XInput
-		//bindButton(12, new ExtendArm()); // Arrow Up
-		//bindButton(13, new RetractArm()); // Arrow Down
-		//bindButton(9, new ContractWinch()); // Start
-		//bindButton(4, new OpenClaw()); // Y
-		//bindButton(1, new CloseClaw()); // A
+		bindButton(4, new ExtendTower());
+		bindButton(1, new RetractTower());
+		bindButton(8, new ContractWinch());
 	}
 	
 	@SuppressWarnings("unused")
 	private JoystickButton bindButton(int buttonNumber, Command command) {
-		JoystickButton button = new JoystickButton(joy0, buttonNumber);
+		JoystickButton button = new JoystickButton(gamepad, buttonNumber);
 		button.whileHeld(command);
 		return button;
 	}

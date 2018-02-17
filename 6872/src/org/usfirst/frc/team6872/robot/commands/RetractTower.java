@@ -3,13 +3,14 @@ package org.usfirst.frc.team6872.robot.commands;
 import org.usfirst.frc.team6872.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class RetractArm extends Command {
+public class RetractTower extends Command {
 
-    public RetractArm() {
+    public RetractTower() {
         requires(Robot.tower);
     }
 
@@ -19,7 +20,7 @@ public class RetractArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.tower.moveTower(-1);
+    	Robot.tower.moveTower(-SmartDashboard.getNumber("Tower Motor", 1));
     }
 
     // Make this return true when this Command no longer needs to run execute()

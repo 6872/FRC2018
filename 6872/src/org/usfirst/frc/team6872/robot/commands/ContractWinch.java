@@ -1,6 +1,8 @@
 package org.usfirst.frc.team6872.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team6872.robot.Robot;
 
 /**
@@ -17,7 +19,7 @@ public class ContractWinch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.tower.contract(1);
+    	Robot.tower.contract(SmartDashboard.getNumber("Winch Motor", 1));
     }
 
     // Make this return true when this Command no longer needs to run execute()

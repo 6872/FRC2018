@@ -23,8 +23,8 @@ public class RecordAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double scale = -Robot.oi.joy1.getRawAxis(3) / 2 + 0.5;
-    	steps.add(new Step(-Robot.oi.joy0.getRawAxis(1) * scale, -Robot.oi.joy0.getRawAxis(5) * scale));
+    	double scale = -Robot.oi.joystick.getRawAxis(3) / 2 + 0.5;
+    	steps.add(new Step(-Robot.oi.gamepad.getRawAxis(1) * scale, -Robot.oi.gamepad.getRawAxis(5) * scale));
     }
 
     // Make this return true when this Command no longer needs to run execute()

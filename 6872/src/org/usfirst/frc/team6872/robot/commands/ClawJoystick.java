@@ -19,11 +19,11 @@ public class ClawJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.oi.joy0.getRawButton(6)) {
-        	Robot.claw.move(0.2);
+    	if (Robot.oi.gamepad.getRawButton(6)) {
+        	Robot.claw.move(0.25);
     	}
     	else {
-        	Robot.claw.move(-Robot.oi.joy0.getRawAxis(3) * 0.3);
+        	Robot.claw.move(-Robot.oi.gamepad.getRawAxis(3) * 0.3);
     	}
     }
 

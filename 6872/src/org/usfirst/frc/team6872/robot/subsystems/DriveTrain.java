@@ -62,7 +62,7 @@ public class DriveTrain extends Subsystem {
 				right = joy0.getRawAxis(3);
 			}
 			else {
-				right = joy0.getRawAxis(5);
+				right = -joy0.getRawAxis(5);
 			}
 			drive.tankDrive(left * scale, right * scale);
 		}
